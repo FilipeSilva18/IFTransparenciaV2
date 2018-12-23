@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">IFTransparenciaV2</string>
+    <string name="data"></string>
+
+    <array name="fases">
+        <item name="empenho">Empenho</item>
+        <item name="liquidação">Liquidação</item>
+        <item name="pagamento">Pagamento</item>
+    </array>
+
+</resources>
