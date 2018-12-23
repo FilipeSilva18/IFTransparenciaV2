@@ -8,4 +8,8 @@
         <item name="pagamento">Pagamento</item>
     </array>
 
+    <string name="facebook_app_id">739108176458401</string>
+    <string name="fb_login_protocol_scheme">fb739108176458401</string>
+
+
 </resources>

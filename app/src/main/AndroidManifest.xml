@@ -5,7 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <application
+
         android:name=".IFTransparenciaV2Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,17 +15,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="041d8bc2919849f75a52b2237ee553d9eac289f2" />
+        <activity android:name=".ui.activity.DetalhesAuxilioActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity android:name=".ui.activity.LoginActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="041d8bc2919849f75a52b2237ee553d9eac289f2" />
-        <activity android:name=".ui.activity.DetalhesAuxilioActivity" />
+
     </application>
 
 </manifest>
