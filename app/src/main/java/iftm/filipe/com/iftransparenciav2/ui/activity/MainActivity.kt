@@ -1,5 +1,6 @@
 package iftm.filipe.com.iftransparenciav2.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -18,12 +19,23 @@ import iftm.filipe.com.iftransparenciav2.ui.viewmodel.DatePickerFragment
 import iftm.filipe.com.iftransparenciav2.ui.viewmodel.MainViewModel
 import iftm.filipe.com.iftransparenciav2.ui.viewmodel.OnClickListener
 import javax.inject.Inject
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), OnClickListener, DatePickerFragment.OnDateSetListener {
 
     override fun onDateSet(data: String) {
         if (mViewModel.dataInicial) mViewModel.auxilioModel.dataInicial = data
         else mViewModel.auxilioModel.dataFinal = data
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onStart() {
+        super.onStart()
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        print(account?.email)
     }
 
     @Inject
@@ -45,11 +57,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), OnClickListener, DateP
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("oi")
         mViewDataBinding.viewModel = mViewModel
         mViewModel.onClickListener = this
         setBueiroRecyclerView()
-
 
     }
 
@@ -84,6 +94,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), OnClickListener, DateP
     override fun onLimparListAuxilios() {
         mAuxilioAdapter.cleanList()
         mAuxilioAdapter.notifyDataSetChanged()
+    }
+
+    fun logOut(v:View){
+        var mAuth = FirebaseAuth.getInstance()
+        mAuth.signOut()
+        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
     }
 
 

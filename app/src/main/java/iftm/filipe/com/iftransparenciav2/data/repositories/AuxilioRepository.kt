@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class AuxilioRepository @Inject constructor(private val client: APIClient) {
     var auxilio: AuxilioRequest = AuxilioRequest("", "", "", arrayListOf())
-    public var onClickListener: OnClickListener? = null
+    var onClickListener: OnClickListener? = null
     fun findAllAuxilios(auxilioModel: AuxilioModel) {
 
 

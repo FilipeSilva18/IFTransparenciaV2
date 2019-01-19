@@ -13,17 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="041d8bc2919849f75a52b2237ee553d9eac289f2" />
+
         <activity android:name=".ui.activity.DetalhesAuxilioActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+
     </application>
 
 </manifest>

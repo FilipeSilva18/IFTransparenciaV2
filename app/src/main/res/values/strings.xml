@@ -8,4 +8,24 @@
         <item name="pagamento">Pagamento</item>
     </array>
 
+    <array name="institutions">
+        <item name="iftm_upt">IFTM. C. UPT</item>
+        <item name="iftm_uberaba">IFTM. C. Uberaba</item>
+        <item name="uftm">UFTM</item>
+    </array>
+
+    <string name="cadastro_cliente">Cadastro de clientes</string>
+    <string name="exibir_clientes">Clientes</string>
+    <string name="edicao_cliente">Edição de clientes</string>
+    <string name="name">Nome:</string>
+    <string name="email">E-Mail:</string>
+    <string name="telefone">Telefone:</string>
+    <string name="cpf">CPF:</string>
+    <string name="instituicao">Instituição:</string>
+    <string name="cadastrar">Realizar Cadastro</string>
+    <string name="password">Senha:</string>
+    <string name="OK">OK!</string>
+
+
+
 </resources>

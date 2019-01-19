@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="FragmentDialogStyle">
+        <item name="android:windowMinWidthMajor">85%</item>
+        <item name="android:windowMinWidthMinor">85%</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <style name="BlueButtonStyle">
+        <item name="android:textColor">@drawable/state_blue_text</item>
+        <item name="android:background">@drawable/state_blue_button</item>
+        <item name="fontPath">fonts/proxima-nova-semibold.ttf</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
