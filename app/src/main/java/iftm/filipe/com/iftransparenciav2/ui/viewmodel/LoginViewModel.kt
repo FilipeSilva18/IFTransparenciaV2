@@ -13,6 +13,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) : ViewModel() {
 
     var loginModel = LoginModel()
+    var signInWithGoogle = false
     lateinit var callbackLoginListener: OnLoginListener
     lateinit var callback: LoginListener
 

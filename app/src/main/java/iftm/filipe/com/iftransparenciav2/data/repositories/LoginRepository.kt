@@ -24,6 +24,7 @@ class LoginRepository @Inject constructor() {
         var myRef = FirebaseDatabase.getInstance().reference
         var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
         var flagRegister = true
+        /*
         myRef.child("user").addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -43,6 +44,28 @@ class LoginRepository @Inject constructor() {
             override fun onCancelled(databaseError: DatabaseError) {
 
             }
+        })
+*/
+
+        myRef.child("user").addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (noteDataSnapshot in dataSnapshot.children) {
+                    val u = User(noteDataSnapshot.child("name")
+                    !!.value as String, noteDataSnapshot.child("email")!!.value as String, noteDataSnapshot.child("cpf")!!.value as String, noteDataSnapshot.child("uid")!!.value as String)
+                    if (u!!.uid.equals(mAuth?.currentUser?.uid)) {
+                        callback.callbackLoginListener()
+                        flagRegister = false
+                        break
+                    }
+                }
+                if (flagRegister)
+                    callback.callbackRegisterListener()
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
         })
 
     }

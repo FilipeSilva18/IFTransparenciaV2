@@ -11,6 +11,7 @@ import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(private val auxilioRepository: AuxilioRepository) : ViewModel() {
     var registerModel = RegisterModel()
+    var signInWithGoogle = false
     lateinit var callbackFillScreen: RegisterListener
 
     fun onSelectItem(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
@@ -25,14 +26,19 @@ class RegisterViewModel @Inject constructor(private val auxilioRepository: Auxil
         if (account != null) {
             registerModel.name = account.displayName.toString()
             registerModel.email = account.email.toString()
+            signInWithGoogle = true
             callbackFillScreen?.onFillScreenListener()
         }
     }
 
     fun register() {
-      registerModel.cpf = Util.replaceChars(registerModel.cpf)
+        registerModel.cpf = Util.replaceChars(registerModel.cpf)
         if (registerModelIsValid()) {
-            callbackFillScreen.onRegisterLisneter()
+            if (signInWithGoogle)
+                callbackFillScreen.onSaveDb()
+            else
+                callbackFillScreen.onRegisterLisneter()
+
         }
     }
 
@@ -47,4 +53,5 @@ class RegisterViewModel @Inject constructor(private val auxilioRepository: Auxil
 interface RegisterListener {
     fun onFillScreenListener()
     fun onRegisterLisneter()
+    fun onSaveDb()
 }

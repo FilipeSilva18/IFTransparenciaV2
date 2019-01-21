@@ -1,6 +1,7 @@
 package iftm.filipe.com.iftransparenciav2.ui.activity
 
 import android.app.ProgressDialog
+import android.arch.lifecycle.Lifecycle
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -45,6 +46,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     var callbacl = object : LoginListener {
         override fun callbackLoginListener() {
+
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
         }
 
@@ -55,16 +57,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun getContentLayout(): Int = R.layout.activity_login
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
+            user.email
             showAlertDialog()
             mViewModel.RegisterOrLogin()
             finish()
         }
     }
-
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -84,7 +87,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private fun configureGoogleSignIn() {
         mGoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.request_client_id))
                 .requestEmail()
                 .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, mGoogleSignInOptions)
@@ -94,6 +97,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     private fun setupUI() {
         mViewDataBinding.signInButton.setSize(SignInButton.SIZE_STANDARD)
         mViewDataBinding.signInButton.setOnClickListener {
+            mViewModel.signInWithGoogle = true
             signIn()
         }
     }
@@ -143,8 +147,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     fun showAlertDialog() {
-         var dialog = ProgressDialog.show (this@LoginActivity, "Teste",
-        "Loading. Please wait...", true);
+        var dialog = ProgressDialog.show(this@LoginActivity, "Teste",
+                "Loading. Please wait...", true);
     }
 
     fun setClickListener() {

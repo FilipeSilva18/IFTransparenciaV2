@@ -24,7 +24,7 @@ import iftm.filipe.com.iftransparenciav2.ui.viewmodel.RegisterListener
 import iftm.filipe.com.iftransparenciav2.ui.viewmodel.RegisterViewModel
 import javax.inject.Inject
 
-class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
+class RegisterActivity : BaseActivity<ActivityRegisterBinding>(){
 
     @Inject
     lateinit var mViewModel: RegisterViewModel
@@ -34,6 +34,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
 
     var callbackFillScreen = object : RegisterListener {
+        override fun onSaveDb() {
+            val firebaseUser = mAuth.currentUser
+            myRef.child("user").push().setValue(User(mViewModel.registerModel.name, mViewModel.registerModel.email, mViewModel.registerModel.email, firebaseUser!!.uid))
+            showDialog("Cadastro Realizado com sucesso!!!")
+        }
 
         override fun onFillScreenListener() {
             mViewDataBinding.etEmail.isEnabled = false
@@ -69,7 +74,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         mViewDataBinding.viewModel = mViewModel
         mViewModel.callbackFillScreen = callbackFillScreen
         mViewDataBinding.etCpf.addTextChangedListener(Util.mask("###.###.###-##", mViewDataBinding.etCpf))
-
     }
 
     fun register() {
