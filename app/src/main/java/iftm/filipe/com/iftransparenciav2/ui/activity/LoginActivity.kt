@@ -23,7 +23,6 @@ import iftm.filipe.com.iftransparenciav2.ui.viewmodel.LoginViewModel
 import iftm.filipe.com.iftransparenciav2.ui.viewmodel.OnLoginListener
 import javax.inject.Inject
 
-
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
 

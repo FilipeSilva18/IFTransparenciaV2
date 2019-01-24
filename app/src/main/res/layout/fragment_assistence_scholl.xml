@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="iftm.filipe.com.iftransparenciav2.ui.viewmodel.MainViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_default"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="De: " />
+
+            <EditText
+                android:id="@+id/et_data_inicial"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:editable="false"
+                android:hint="Data Inicial"
+                android:onClick="@{() -> viewModel.onClick()}"
+                android:text="@{viewModel.auxilioModel.dataInicial}"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_default" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Até: " />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:editable="false"
+                android:hint="Data Final"
+                android:onClick="@{() -> viewModel.onClickDataFinal()}"
+                android:text="@{viewModel.auxilioModel.dataFinal}"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_default" />
+
+            <Button
+                android:id="@+id/bt_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="logout" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fase: " />
+
+            <Spinner
+                android:id="@+id/sp_fase"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/fases"
+                android:onItemSelected="@{(parent,view,pos,id)->viewModel.onSelectItem(parent,view,pos,id)}" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:onClick="@{() -> viewModel.buscarAuxilios()}"
+                android:text="Buscar" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:visibility="@{viewModel.loadingVisibility ?  View.VISIBLE : View.GONE}">
+
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_auxilio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_auxilios"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_default"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NENHUM AUXÍLIO ENCONTRADO"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>
