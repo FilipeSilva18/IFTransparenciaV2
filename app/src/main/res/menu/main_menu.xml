@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/menu_feed"
-        android:icon="@drawable/ic_menu_feed"
+        android:icon="@drawable/assistence_university"
         android:title="@string/menu_title_scholl" />
 
     <item
         android:id="@+id/menu_zuppers"
-        android:icon="@drawable/ic_menu_zuppers"
-        android:title="@string/menu_title_zuppers" />
+        android:icon="@drawable/assistence_student"
+        android:title="@string/menu_title_personal" />
 
     <item
         android:id="@+id/menu_info"
-        android:icon="@drawable/ic_menu_info"
-        android:title="@string/menu_title_info" />
+        android:icon="@drawable/assistence_general"
+        android:title="@string/menu_title_all" />
 
     <item
         android:id="@+id/menu_profile"
-        android:icon="@drawable/ic_menu_profile"
-        android:title="@string/menu_title_personal" />
+        android:icon="@drawable/profile"
+        android:title="@string/menu_title_profile" />
 
 </menu>
